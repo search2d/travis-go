@@ -1,0 +1,16 @@
+language: go
+
+go:
+  - 1.8
+  - tip
+
+install:
+  - go get github.com/Masterminds/glide
+
+script:
+  - glide install
+  - go vet `glide nv`
+  - ./test.sh
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
